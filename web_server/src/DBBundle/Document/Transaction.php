@@ -21,17 +21,17 @@ class Transaction
     protected $id;
 
     /**
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="integer")
      */
     protected $sender_id;
 
     /**
-     * @MongoDB\Field(type="int")
+     * @MongoDB\Field(type="integer")
      */
     protected $receiver_id;
 
     /**
-     * @MongoDB\Field(type="timestamp")
+     * @MongoDB\Field(type="integer")
      */
     protected $ts;
 
@@ -53,7 +53,7 @@ class Transaction
     /**
      * Set senderId
      *
-     * @param int $senderId
+     * @param integer $senderId
      * @return self
      */
     public function setSenderId($senderId)
@@ -65,7 +65,7 @@ class Transaction
     /**
      * Get senderId
      *
-     * @return int $senderId
+     * @return integer $senderId
      */
     public function getSenderId()
     {
@@ -75,7 +75,7 @@ class Transaction
     /**
      * Set receiverId
      *
-     * @param int $receiverId
+     * @param integer $receiverId
      * @return self
      */
     public function setReceiverId($receiverId)
@@ -87,7 +87,7 @@ class Transaction
     /**
      * Get receiverId
      *
-     * @return int $receiverId
+     * @return integer $receiverId
      */
     public function getReceiverId()
     {
@@ -97,7 +97,7 @@ class Transaction
     /**
      * Set ts
      *
-     * @param timestamp $ts
+     * @param integer $ts
      * @return self
      */
     public function setTs($ts)
@@ -109,7 +109,7 @@ class Transaction
     /**
      * Get ts
      *
-     * @return timestamp $ts
+     * @return integer $ts
      */
     public function getTs()
     {
@@ -119,7 +119,7 @@ class Transaction
     /**
      * Set sum
      *
-     * @param float $sum
+     * @param integer $sum
      * @return self
      */
     public function setSum($sum)
@@ -131,7 +131,7 @@ class Transaction
     /**
      * Get sum
      *
-     * @return float $sum
+     * @return integer $sum
      */
     public function getSum()
     {

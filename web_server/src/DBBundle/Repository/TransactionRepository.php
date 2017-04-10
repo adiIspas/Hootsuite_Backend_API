@@ -10,17 +10,22 @@ namespace DBBundle\Repository;
  */
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\HttpFoundation\Response;
+use DBBundle\Document\Transaction;
 
 class TransactionRepository extends DocumentRepository
 {
-
-    public function findAllOrderedById()
+    public function addTransaction(Transaction $transaction)
     {
-        return $this->createQueryBuilder()
-            ->sort('sender_id', 'ASC')
+        $this->createQueryBuilder()
+            ->insert()
+            ->field('sender_id')->set(intval($transaction->getSenderId()))
+            ->field('receiver_id')->set(intval($transaction->getReceiverId()))
+            ->field('ts')->set(intval($transaction->getTs()))
+            ->field('sum')->set(intval($transaction->getSum()))
             ->getQuery()
             ->execute();
-    }
 
+        return new Response('Done!');
+    }
 }
