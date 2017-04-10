@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: Adrian Ispas
+ * Date: 10.04.2017
+ * Time: 16:27
+ */
+namespace DBBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+
+class Product
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $sender_id;
+
+    /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $receiver_id;
+
+    /**
+     * @MongoDB\Field(type="timestamp")
+     */
+    protected $ts;
+
+    /**
+     * @MongoDB\Field(type="double")
+     */
+    protected $sum;
+}
