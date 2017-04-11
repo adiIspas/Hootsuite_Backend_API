@@ -14,8 +14,13 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 class TransactionController extends Controller
 {
     /**
+     * Add a transaction in system.
+     *
      * @FOS\View()
      * @FOS\Post("/transactions")
+     *
+     * @param Request $request
+     * @return Response
      */
     public function postAddTransactionAction(Request $request)
     {
