@@ -15,6 +15,11 @@ use DBBundle\Document\Transaction;
 
 class TransactionRepository extends DocumentRepository
 {
+    /**
+     * Add a transaction in system.
+     *
+     * @return Response
+     */
     public function addTransaction(Transaction $transaction)
     {
         $this->createQueryBuilder()
