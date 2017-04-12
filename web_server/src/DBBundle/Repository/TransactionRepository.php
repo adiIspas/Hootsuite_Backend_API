@@ -18,6 +18,7 @@ class TransactionRepository extends DocumentRepository
     /**
      * Add a transaction in system.
      *
+     * @param Transaction $transaction
      * @return Response
      */
     public function addTransaction(Transaction $transaction)
@@ -31,6 +32,6 @@ class TransactionRepository extends DocumentRepository
             ->getQuery()
             ->execute();
 
-        return new Response('Done!');
+        return new Response('The transaction was successfully added!',200);
     }
 }

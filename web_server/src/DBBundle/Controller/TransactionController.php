@@ -25,19 +25,35 @@ class TransactionController extends Controller
     public function postAddTransactionAction(Request $request)
     {
         $requestParams = $request->request->all();
-        $sender = $requestParams['sender'];
-        $receiver = $requestParams['receiver'];
-        $timestamp = $requestParams['timestamp'];
-        $sum = $requestParams['sum'];
+        $payloadSize = $this->getParameter('payload_size');
+        $payloadKeys = $this->getParameter('payload_keys');
 
-        $transaction = new Transaction();
-        $transaction->setSenderId($sender);
-        $transaction->setReceiverId($receiver);
-        $transaction->setTs($timestamp);
-        $transaction->setSum($sum);
+        if(sizeof($requestParams) == $payloadSize) {
+            $sender = $requestParams['sender'];
+            $receiver = $requestParams['receiver'];
+            $timestamp = $requestParams['timestamp'];
+            $sum = $requestParams['sum'];
 
-        $transactionService = $this->container->get('db.transaction_service');
+            $transaction = new Transaction();
+            $transaction->setSenderId($sender);
+            $transaction->setReceiverId($receiver);
+            $transaction->setTs($timestamp);
+            $transaction->setSum($sum);
 
-        return new Response($transactionService->addTransaction($transaction));
+            $transactionService = $this->container->get('db.transaction_service');
+
+            return new Response($transactionService->addTransaction($transaction));
+        }
+        else {
+
+            $missedParams = null;
+            foreach ($payloadKeys as $currentParam){
+                if(!array_key_exists($currentParam, $requestParams)) {
+                    $missedParams[] = $currentParam;
+                }
+            }
+
+            return new Response('Incomplete payload! Parameters ' . implode(", ",$missedParams) . ' are missing.', 400);
+        }
     }
 }

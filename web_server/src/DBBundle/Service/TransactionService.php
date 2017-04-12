@@ -13,6 +13,7 @@ use DBBundle\Repository\TransactionRepository;
 use DBBundle\Document\Transaction;
 use Doctrine\ORM\EntityManager;
 use Documents\CustomRepository\Repository;
+use Symfony\Component\HttpFoundation\Response;
 
 class TransactionService
 {
@@ -34,14 +35,14 @@ class TransactionService
      * Add a transaction in system.
      *
      * @param Transaction $transaction
-     * @return mixed
+     * @return Response
      */
     public function addTransaction(Transaction $transaction)
     {
         $repository = $this->getRepository('Transaction');
-        $result = $repository->addTransaction($transaction);
+        $response = $repository->addTransaction($transaction);
 
-        return $result;
+        return $response;
     }
 
     /**
