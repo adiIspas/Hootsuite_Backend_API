@@ -56,4 +56,40 @@ class TransactionController extends Controller
             return new Response('Incomplete payload! Parameters ' . implode(", ",$missedParams) . ' are missing.', 400);
         }
     }
+
+    /**
+     * List all transactions in which the user was involved in the given day.
+     *
+     * @FOS\View()
+     * @FOS\Get("/transactions/")
+     *
+     * Request $request
+     * @return mixed
+     */
+    public function getTransactionsAction(Request $request)
+    {
+        $user = $request->get('user');
+        $day = $request->get('day');
+        $threshold = $request->get('threshold');
+
+        return new Response($user . ' | ' . $day . ' | ' . $threshold);
+    }
+
+    /**
+     * Compute user balance in the given time frame.
+     *
+     * @FOS\View()
+     * @FOS\Get("/balance/")
+     *
+     * Request $request
+     * @return mixed
+     */
+    public function getBalanceAction(Request $request)
+    {
+        $user = $request->get('user');
+        $since = $request->get('since');
+        $until = $request->get('until');
+
+        return new Response($user . ' | ' . $since . ' | ' . $until);
+    }
 }
