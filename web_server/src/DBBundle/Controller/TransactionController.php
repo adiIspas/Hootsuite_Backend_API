@@ -72,7 +72,9 @@ class TransactionController extends Controller
         $day = $request->get('day');
         $threshold = $request->get('threshold');
 
-        return new Response($user . ' | ' . $day . ' | ' . $threshold);
+        $transactionService = $this->container->get('db.transaction_service');
+
+        return new Response($transactionService->getTransactions($user, $day, $threshold));
     }
 
     /**
@@ -90,6 +92,8 @@ class TransactionController extends Controller
         $since = $request->get('since');
         $until = $request->get('until');
 
-        return new Response($user . ' | ' . $since . ' | ' . $until);
+        $transactionService = $this->container->get('db.transaction_service');
+
+        return new Response($transactionService->getBalance($user, $since, $until));
     }
 }

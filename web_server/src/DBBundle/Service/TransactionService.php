@@ -46,6 +46,38 @@ class TransactionService
     }
 
     /**
+     * List all transactions in which the user was involved in the given day.
+     *
+     * @param integer $user
+     * @param integer $day
+     * @param integer $threshold
+     * @return Response
+     */
+    public function getTransactions($user, $day, $threshold)
+    {
+        $repository = $this->getRepository('Transaction');
+        $response = $repository->getTransactions($user, $day, $threshold);
+
+        return $response;
+    }
+
+    /**
+     * Compute user balance in the given time frame.
+     *
+     * @param integer $user
+     * @param integer $since
+     * @param integer $until
+     * @return Response
+     */
+    public function getBalance($user, $since, $until)
+    {
+        $repository = $this->getRepository('Transaction');
+        $response = $repository->getBalance($user, $since, $until);
+
+        return $response;
+    }
+
+    /**
      * Get repository by name.
      *
      * @param String $repositoryName

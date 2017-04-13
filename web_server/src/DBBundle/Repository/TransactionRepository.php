@@ -34,4 +34,30 @@ class TransactionRepository extends DocumentRepository
 
         return new Response('The transaction was successfully added!',200);
     }
+
+    /**
+     * List all transactions in which the user was involved in the given day.
+     *
+     * @param integer $user
+     * @param integer $day
+     * @param integer $threshold
+     * @return Response
+     */
+    public function getTransactions($user, $day, $threshold)
+    {
+        return new Response($user . ' ' . $day . '  ' . $threshold,200);
+    }
+
+    /**
+     * Compute user balance in the given time frame.
+     *
+     * @param integer $user
+     * @param integer $since
+     * @param integer $until
+     * @return Response
+     */
+    public function getBalance($user, $since, $until)
+    {
+        return new Response($user . ' ' . $since . '  ' . $until,200);
+    }
 }
