@@ -45,7 +45,30 @@ class TransactionRepository extends DocumentRepository
      */
     public function getTransactions($user, $day, $threshold)
     {
-        return new Response($user . ' ' . $day . '  ' . $threshold,200);
+        $dayIntervalTS = range($day,$day+100);
+
+//        $transactions = $this->createQueryBuilder()
+//                             ->field('receiver_id')->equals($user)
+//                             ->field('ts')->in($dayIntervalTS)
+//                             ->field('sum')->gte($threshold)
+//                             ->getQuery()
+//                             ->execute();
+
+//        $transactions = $this->createQueryBuilder()
+//            ->select('sender_id')
+//            ->field('sender_id')->equals($user)
+//            ->getQuery()
+//            ->execute();
+
+        $qb = $this->createQueryBuilder()
+            ->hydrate(false)
+            ->select('sender_id', 'receiver_id', 'sum');
+        $query = $qb->getQuery();
+        $users = $query->execute()->toArray();
+
+//        return new Response($user . ' ' . $day . '  ' . $threshold,200);
+        return new Response(json_encode($users),200);
+//        return new Response(json_encode($dayIntervalTS),200);
     }
 
     /**
