@@ -75,9 +75,9 @@ class TransactionRepository extends DocumentRepository
 
         // Execute query
         $query = $qb->getQuery();
-        $users = $query->execute()->toArray();
+        $transactions = $query->execute()->toArray();
 
-        return new Response(json_encode($users),200);
+        return new Response(json_encode($transactions),200);
     }
 
     /**
@@ -90,6 +90,59 @@ class TransactionRepository extends DocumentRepository
      */
     public function getBalance($user, $since, $until)
     {
-        return new Response($user . ' ' . $since . '  ' . $until,200);
+        $balance = 0;
+        $user = intval($user);
+
+        // Extract since day of transaction query (the begin of day)
+        $sinceDay = gmdate("d-m-Y",$since);
+        $tsSinceDay = strtotime($sinceDay);
+
+        // Extract until day of transaction query (the end of day)
+        $untilDay = gmdate("d-m-Y",$until);
+        $tsUntilDay = strtotime($untilDay) + 86399;
+
+        // Create query for sender user
+        $qb = $this->createQueryBuilder()
+            ->hydrate(false)
+            ->select('sum');
+
+        // Select sender user
+        $qb
+            ->field('sender_id')->equals($user);
+
+        // Select day
+        $qb
+            ->addAnd($qb->expr()->field('ts')->range($tsSinceDay, $tsUntilDay));
+
+        // Execute query
+        $query = $qb->getQuery();
+        $sums = $query->execute()->toArray();
+
+        foreach ($sums as $currentValue) {
+            $balance -= $currentValue["sum"];
+        }
+
+        // Create query for receiver user
+        $qb = $this->createQueryBuilder()
+            ->hydrate(false)
+            ->select('sum');
+
+        // Select receiver user
+        $qb
+            ->field('receiver_id')->equals($user);
+
+        // Select day
+        $qb
+            ->addAnd($qb->expr()->field('ts')->range($tsSinceDay, $tsUntilDay));
+
+        // Execute query
+        $query = $qb->getQuery();
+        $sums = $query->execute()->toArray();
+
+        foreach ($sums as $currentValue) {
+            $balance += $currentValue["sum"];
+        }
+
+        return new Response($balance,200);
     }
 }
