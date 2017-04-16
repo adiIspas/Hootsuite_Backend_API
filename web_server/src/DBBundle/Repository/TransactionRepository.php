@@ -45,30 +45,39 @@ class TransactionRepository extends DocumentRepository
      */
     public function getTransactions($user, $day, $threshold)
     {
-        $dayIntervalTS = range($day,$day+100);
+        $user = intval($user);
+        $threshold = intval($threshold);
 
-//        $transactions = $this->createQueryBuilder()
-//                             ->field('receiver_id')->equals($user)
-//                             ->field('ts')->in($dayIntervalTS)
-//                             ->field('sum')->gte($threshold)
-//                             ->getQuery()
-//                             ->execute();
+        // Extract day of transaction query
+        $dayOfQuery = gmdate("d-m-Y",$day);
 
-//        $transactions = $this->createQueryBuilder()
-//            ->select('sender_id')
-//            ->field('sender_id')->equals($user)
-//            ->getQuery()
-//            ->execute();
+        // Determinate the begin and the end of day in unix timestamp
+        $tsBeginDay = strtotime($dayOfQuery);
+        $tsEndDay = $tsBeginDay + 86399;
 
+        // Create query
         $qb = $this->createQueryBuilder()
-            ->hydrate(false)
-            ->select('sender_id', 'receiver_id', 'sum');
+                   ->hydrate(false)
+                   ->select('sender_id', 'receiver_id', 'ts', 'sum');
+
+        // Select user
+        $qb
+            ->addOr($qb->expr()->field('sender_id')->equals($user))
+            ->addOr($qb->expr()->field('receiver_id')->equals($user));
+
+        // Select day
+        $qb
+            ->addAnd($qb->expr()->field('ts')->range($tsBeginDay,$tsEndDay));
+
+        // Select threshold
+        $qb
+            ->addAnd($qb->expr()->field('sum')->gte($threshold));
+
+        // Execute query
         $query = $qb->getQuery();
         $users = $query->execute()->toArray();
 
-//        return new Response($user . ' ' . $day . '  ' . $threshold,200);
         return new Response(json_encode($users),200);
-//        return new Response(json_encode($dayIntervalTS),200);
     }
 
     /**
