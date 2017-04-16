@@ -57,6 +57,11 @@ class TransactionController extends Controller
      */
     public function getTransactionsAction(Request $request)
     {
+        $requestParams = $request->query->all();
+
+        if (($response = $this->checkParameters($requestParams, "getTransactionsAction")) !== true)
+            return $response;
+
         $user = $request->get('user');
         $day = $request->get('day');
         $threshold = $request->get('threshold');
@@ -77,6 +82,11 @@ class TransactionController extends Controller
      */
     public function getBalanceAction(Request $request)
     {
+        $requestParams = $request->query->all();
+
+        if (($response = $this->checkParameters($requestParams, "getBalanceAction")) !== true)
+            return $response;
+
         $user = $request->get('user');
         $since = $request->get('since');
         $until = $request->get('until');
@@ -95,7 +105,6 @@ class TransactionController extends Controller
      */
     private function checkParameters($requestParams, $callMethod)
     {
-
         switch ($callMethod) {
             case 'postAddTransactionAction': {
                 $required = ["sender", "receiver", "timestamp", "sum"];
