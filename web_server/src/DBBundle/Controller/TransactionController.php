@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Controller\Annotations as FOS;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class TransactionController extends Controller
 {
@@ -25,36 +26,24 @@ class TransactionController extends Controller
     public function postAddTransactionAction(Request $request)
     {
         $requestParams = $request->request->all();
-        $payloadSize = $this->getParameter('payload_size');
-        $payloadKeys = $this->getParameter('payload_keys');
 
-        if(sizeof($requestParams) == $payloadSize) {
-            $sender = $requestParams['sender'];
-            $receiver = $requestParams['receiver'];
-            $timestamp = $requestParams['timestamp'];
-            $sum = $requestParams['sum'];
+        if (($response = $this->checkParameters($requestParams, "postAddTransactionAction")) !== true)
+            return $response;
 
-            $transaction = new Transaction();
-            $transaction->setSenderId($sender);
-            $transaction->setReceiverId($receiver);
-            $transaction->setTs($timestamp);
-            $transaction->setSum($sum);
+        $sender = $requestParams['sender'];
+        $receiver = $requestParams['receiver'];
+        $timestamp = $requestParams['timestamp'];
+        $sum = $requestParams['sum'];
 
-            $transactionService = $this->container->get('db.transaction_service');
+        $transaction = new Transaction();
+        $transaction->setSenderId($sender);
+        $transaction->setReceiverId($receiver);
+        $transaction->setTs($timestamp);
+        $transaction->setSum($sum);
 
-            return new Response($transactionService->addTransaction($transaction));
-        }
-        else {
+        $transactionService = $this->container->get('db.transaction_service');
 
-            $missedParams = null;
-            foreach ($payloadKeys as $currentParam){
-                if(!array_key_exists($currentParam, $requestParams)) {
-                    $missedParams[] = $currentParam;
-                }
-            }
-
-            return new Response('Incomplete payload! Parameters ' . implode(", ",$missedParams) . ' are missing.', 400);
-        }
+        return new Response($transactionService->addTransaction($transaction));
     }
 
     /**
@@ -95,5 +84,61 @@ class TransactionController extends Controller
         $transactionService = $this->container->get('db.transaction_service');
 
         return new Response($transactionService->getBalance($user, $since, $until));
+    }
+
+    /**
+     * Check if a call is correct.
+     *
+     * @param $requestParams
+     * @param $callMethod
+     * @return bool|Response
+     */
+    private function checkParameters($requestParams, $callMethod)
+    {
+
+        switch ($callMethod) {
+            case 'postAddTransactionAction': {
+                $required = ["sender", "receiver", "timestamp", "sum"];
+
+                return ($response = $this->countMissedParameters($required, $requestParams)) === true ? true : $response;
+            }
+
+            case 'getTransactionsAction': {
+                $required = ["user", "day", "threshold"];
+
+                return ($response = $this->countMissedParameters($required, $requestParams)) === true ? true : $response;
+            }
+
+            case 'getBalanceAction': {
+                $required = ["user", "since", "until"];
+
+                return ($response = $this->countMissedParameters($required, $requestParams)) === true ? true : $response;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Count missed parameters from request.
+     *
+     * @param $required
+     * @param $requestParams
+     * @return bool|Response
+     */
+    private function countMissedParameters($required, $requestParams)
+    {
+        $missedParams = null;
+        foreach ($required as $currentParam){
+            if(!array_key_exists($currentParam, $requestParams)) {
+                $missedParams[] = $currentParam;
+            }
+        }
+
+        if (sizeof($missedParams) > 0){
+            return new Response('Incomplete payload! Parameters ' . implode(", ",$missedParams) . ' are missing.', 400);
+        }
+
+        return true;
     }
 }

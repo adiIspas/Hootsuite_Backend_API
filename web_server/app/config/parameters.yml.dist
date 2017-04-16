@@ -19,6 +19,3 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     mongodb_server: "mongodb://localhost:27017"
-
-    payload_size: 4
-    payload_keys: ['sender','receiver','timestamp','sum']
