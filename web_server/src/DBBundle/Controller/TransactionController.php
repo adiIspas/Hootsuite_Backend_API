@@ -109,19 +109,19 @@ class TransactionController extends Controller
             case 'postAddTransactionAction': {
                 $required = ["sender", "receiver", "timestamp", "sum"];
 
-                return ($response = $this->countMissedParameters($required, $requestParams)) === true ? true : $response;
+                return ($response = $this->countMissedAndCheckTypeParameters($required, $requestParams)) === true ? true : $response;
             }
 
             case 'getTransactionsAction': {
                 $required = ["user", "day", "threshold"];
 
-                return ($response = $this->countMissedParameters($required, $requestParams)) === true ? true : $response;
+                return ($response = $this->countMissedAndCheckTypeParameters($required, $requestParams)) === true ? true : $response;
             }
 
             case 'getBalanceAction': {
                 $required = ["user", "since", "until"];
 
-                return ($response = $this->countMissedParameters($required, $requestParams)) === true ? true : $response;
+                return ($response = $this->countMissedAndCheckTypeParameters($required, $requestParams)) === true ? true : $response;
             }
         }
 
@@ -135,9 +135,10 @@ class TransactionController extends Controller
      * @param $requestParams
      * @return bool|Response
      */
-    private function countMissedParameters($required, $requestParams)
+    private function countMissedAndCheckTypeParameters($required, $requestParams)
     {
         $missedParams = null;
+        $finalResponse = '';
         foreach ($required as $currentParam){
             if(!array_key_exists($currentParam, $requestParams)) {
                 $missedParams[] = $currentParam;
@@ -145,8 +146,23 @@ class TransactionController extends Controller
         }
 
         if (sizeof($missedParams) > 0){
-            return new Response('Incomplete payload! Parameters ' . implode(", ",$missedParams) . ' are missing.', 400);
+            $finalResponse = 'Parameters ' . implode(", ",$missedParams) . ' are missing.' . PHP_EOL;
         }
+
+        $missedParams = null;
+        $paramsValues = array_values($requestParams);
+        foreach ($paramsValues as $currentParamValue){
+            if (! filter_var($currentParamValue, FILTER_VALIDATE_INT)) {
+                $missedParams[] = array_search($currentParamValue,$requestParams);
+            }
+        }
+
+        if (sizeof($missedParams) > 0){
+            $finalResponse .= 'Parameters ' . implode(", ",$missedParams) . ' are not integers.';
+        }
+
+        if ($finalResponse !== '')
+            return new Response($finalResponse,400);
 
         return true;
     }

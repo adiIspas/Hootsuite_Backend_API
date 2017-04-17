@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TransactionControllerTest extends WebTestCase
 {
+    //
+    // Tests for method postAddTransactionAction
+    //
     public function testPostAddTransactionAction_AllValidParameters_True()
     {
         $client = static::createClient();
@@ -33,7 +36,7 @@ class TransactionControllerTest extends WebTestCase
                 "sum" => 15001)
         );
 
-        $this->assertContains("Incomplete payload! Parameters sender are missing.", $crawler->text());
+        $this->assertContains("Parameters sender are missing.", $crawler->text());
 
         // Send sender, timestamp and sum parameters.
         $crawler = $client->request('POST', '/transactions',
@@ -42,7 +45,7 @@ class TransactionControllerTest extends WebTestCase
                 "sum" => 15001)
         );
 
-        $this->assertContains("Incomplete payload! Parameters receiver are missing.", $crawler->text());
+        $this->assertContains("Parameters receiver are missing.", $crawler->text());
 
         // Send sender, receiver and sum parameters.
         $crawler = $client->request('POST', '/transactions',
@@ -51,7 +54,7 @@ class TransactionControllerTest extends WebTestCase
                 "sum" => 15001)
         );
 
-        $this->assertContains("Incomplete payload! Parameters timestamp are missing.", $crawler->text());
+        $this->assertContains("Parameters timestamp are missing.", $crawler->text());
 
         // Send sender, receiver and timestamp parameters.
         $crawler = $client->request('POST', '/transactions',
@@ -60,14 +63,72 @@ class TransactionControllerTest extends WebTestCase
                 "timestamp" => 1491990709)
         );
 
-        $this->assertContains("Incomplete payload! Parameters sum are missing.", $crawler->text());
+        $this->assertContains("Parameters sum are missing.", $crawler->text());
 
         // Don't send any parameters.
         $crawler = $client->request('POST', '/transactions');
 
-        $this->assertContains("Incomplete payload! Parameters sender, receiver, timestamp, sum are missing.", $crawler->text());
+        $this->assertContains("Parameters sender, receiver, timestamp, sum are missing.", $crawler->text());
     }
 
+    public function testPostAddTransactionAction_InvalidParameters_True()
+    {
+        $client = static::createClient();
+
+        // Send receiver, timestamp and sum valid parameters and invalid sender parameter.
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 'a',
+                "receiver" => 2,
+                "timestamp" => 1491990709,
+                "sum" => 15001)
+        );
+
+        $this->assertContains("Parameters sender are not integers.", $crawler->text());
+
+        // Send sender, timestamp and sum valid parameters and invalid receiver parameter.
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 1,
+                "receiver" => 'a',
+                "timestamp" => 1491990709,
+                "sum" => 15001)
+        );
+
+        $this->assertContains("Parameters receiver are not integers.", $crawler->text());
+
+        // Send sender, receiver and sum parameters and invalid timestamp parameter.
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 1,
+                "receiver" => 2,
+                "timestamp" => 'a',
+                "sum" => 15001)
+        );
+
+        $this->assertContains("Parameters timestamp are not integers.", $crawler->text());
+
+        // Send sender, receiver and timestamp valid parameters and invalid sum parameter.
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 1,
+                "receiver" => 2,
+                "timestamp" => 1491990709,
+                "sum" => 'a')
+        );
+
+        $this->assertContains("Parameters sum are not integers.", $crawler->text());
+
+        // All parameters are invalids.
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 'a',
+                "receiver" => 'b',
+                "timestamp" => 'c',
+                "sum" => 'd')
+        );
+
+        $this->assertContains("Parameters sender, receiver, timestamp, sum are not integers.", $crawler->text());
+    }
+
+    //
+    // Tests for method getTransactionsAction
+    //
     public function testGetTransactionsAction_AllValidParameters_True()
     {
         $client = static::createClient();
@@ -97,9 +158,62 @@ class TransactionControllerTest extends WebTestCase
         // Send all parameters.
         $crawler = $client->request('GET', '/transactions/?user=10&day=1492360649&threshold=100');
 
-        $this->assertNotContains("Incomplete payload! Parameters",$crawler->text());
+        $this->assertNotContains("Parameters ",$crawler->text());
     }
 
+    public function testGetTransactionsAction_IncompleteParameters_True()
+    {
+        $client = static::createClient();
+
+        // Send day and threshold parameters.
+        $crawler = $client->request('GET', '/transactions/?day=1492360649&threshold=100');
+
+        $this->assertContains("Parameters user are missing.", $crawler->text());
+
+        // Send user and day parameters.
+        $crawler = $client->request('GET', '/transactions/?user=10&day=1492360649');
+
+        $this->assertContains("Parameters threshold are missing.", $crawler->text());
+
+        // Send user and threshold parameters.
+        $crawler = $client->request('GET', '/transactions/?user=10&threshold=100');
+
+        $this->assertContains("Parameters day are missing.", $crawler->text());
+
+        // Don't send any parameters.
+        $crawler = $client->request('GET', '/transactions/');
+
+        $this->assertContains("Parameters user, day, threshold are missing.", $crawler->text());
+    }
+
+    public function testGetTransactionsAction_InvalidParameters_True()
+    {
+        $client = static::createClient();
+
+        // Send day and threshold valid parameters and user invalid parameter.
+        $crawler = $client->request('GET', '/transactions/?user=a&day=1492360649&threshold=100');
+
+        $this->assertContains("Parameters user are not integers.", $crawler->text());
+
+        // Send user and day valid parameters and threshold invalid parameter.
+        $crawler = $client->request('GET', '/transactions/?user=10&day=1492360649&threshold=a');
+
+        $this->assertContains("Parameters threshold are not integers.", $crawler->text());
+
+        // Send user and threshold valid parameters and day invalid parameter.
+        $crawler = $client->request('GET', '/transactions/?user=10&day=a&threshold=100');
+
+        $this->assertContains("Parameters day are not integers.", $crawler->text());
+
+        // All parameters are invalids.
+        $crawler = $client->request('GET', '/transactions/?user=a&day=b&threshold=c');
+
+        $this->assertContains("Parameters user, day, threshold are not integers.", $crawler->text());
+    }
+
+    //
+    // Tests for method getBalanceAction
+    //
     public function testGetBalanceAction_AllValidParameters_True()
     {
         $client = static::createClient();
@@ -129,32 +243,7 @@ class TransactionControllerTest extends WebTestCase
         // Send all parameters.
         $crawler = $client->request('GET', '/balance/?user=20&since=1492360649&until=1492360649');
 
-        $this->assertNotContains("Incomplete payload! Parameters",$crawler->text());
-    }
-
-    public function testGetTransactionsAction_IncompleteParameters_True()
-    {
-        $client = static::createClient();
-
-        // Send day and threshold parameters.
-        $crawler = $client->request('GET', '/transactions/?day=1492360649&threshold=100');
-
-        $this->assertContains("Incomplete payload! Parameters user are missing.", $crawler->text());
-
-        // Send user and day parameters.
-        $crawler = $client->request('GET', '/transactions/?user=10&day=1492360649');
-
-        $this->assertContains("Incomplete payload! Parameters threshold are missing.", $crawler->text());
-
-        // Send user and threshold parameters.
-        $crawler = $client->request('GET', '/transactions/?user=10&threshold=100');
-
-        $this->assertContains("Incomplete payload! Parameters day are missing.", $crawler->text());
-
-        // Don't send any parameters.
-        $crawler = $client->request('GET', '/transactions/');
-
-        $this->assertContains("Incomplete payload! Parameters user, day, threshold are missing.", $crawler->text());
+        $this->assertNotContains("Parameters ",$crawler->text());
     }
 
     public function testGetBalanceAction_IncompleteParameters_True()
@@ -164,21 +253,46 @@ class TransactionControllerTest extends WebTestCase
         // Send since and until parameters.
         $crawler = $client->request('GET', '/balance/?since=1492360649&until=1492360649');
 
-        $this->assertContains("Incomplete payload! Parameters user are missing.", $crawler->text());
+        $this->assertContains("Parameters user are missing.", $crawler->text());
 
         // Send user and since parameters.
         $crawler = $client->request('GET', '/balance/?user=10&since=1492360649');
 
-        $this->assertContains("Incomplete payload! Parameters until are missing.", $crawler->text());
+        $this->assertContains("Parameters until are missing.", $crawler->text());
 
         // Send user and until parameters.
         $crawler = $client->request('GET', '/balance/?user=10&until=1492360649');
 
-        $this->assertContains("Incomplete payload! Parameters since are missing.", $crawler->text());
+        $this->assertContains("Parameters since are missing.", $crawler->text());
 
         // Don't send any parameters.
         $crawler = $client->request('GET', '/balance/');
 
-        $this->assertContains("Incomplete payload! Parameters user, since, until are missing.", $crawler->text());
+        $this->assertContains("Parameters user, since, until are missing.", $crawler->text());
+    }
+
+    public function testGetBalanceAction_InvalidParameters_True()
+    {
+        $client = static::createClient();
+
+        // Send since and until valid parameters and user invalid parameter.
+        $crawler = $client->request('GET', '/balance/?user=a&since=1492360649&until=1492360649');
+
+        $this->assertContains("Parameters user are not integers.", $crawler->text());
+
+        // Send user and since valid parameters and until invalid parameter.
+        $crawler = $client->request('GET', '/balance/?user=10&since=1492360649&until=a');
+
+        $this->assertContains("Parameters until are not integers.", $crawler->text());
+
+        // Send user and until valid parameters and since invalid parameter.
+        $crawler = $client->request('GET', '/balance/?user=10&since=a&until=1492360649');
+
+        $this->assertContains("Parameters since are not integers.", $crawler->text());
+
+        // All parameters are invalids.
+        $crawler = $client->request('GET', '/balance/?user=a&since=b&until=c');
+
+        $this->assertContains("Parameters user, since, until are not integers.", $crawler->text());
     }
 }
