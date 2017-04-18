@@ -24,6 +24,27 @@ class TransactionControllerTest extends WebTestCase
         );
 
         $this->assertContains("The transaction was successfully added!", $crawler->text());
+
+        $crawler = $client->request('GET', '/transactions/?user=1&day=1491990709&threshold=15001');
+
+        $result = json_decode($crawler->text(),true);
+
+        $transaction = new Transaction();
+        $transaction->setSenderId(1);
+        $transaction->setReceiverId(2);
+        $transaction->setSum(15001);
+        $transaction->setTs(1491990709);
+
+        $transactionResult = new Transaction();
+        $transactionResult->setSenderId($result[0]["sender_id"]);
+        $transactionResult->setReceiverId($result[0]["receiver_id"]);
+        $transactionResult->setSum($result[0]["sum"]);
+        $transactionResult->setTs($result[0]["ts"]);
+
+        $this->assertEquals($transaction->getSenderId(), $transactionResult->getSenderId());
+        $this->assertEquals($transaction->getReceiverId(), $transactionResult->getReceiverId());
+        $this->assertEquals($transaction->getSum(), $transactionResult->getSum());
+        $this->assertEquals($transaction->getTs(), $transactionResult->getTs());
     }
 
     public function testPostAddTransactionAction_IncompleteParameters_True()
@@ -213,7 +234,7 @@ class TransactionControllerTest extends WebTestCase
         $this->assertContains("Parameters user, day, threshold are not integers.", $crawler->text());
     }
 
-    public function testGetTransactionsAction_ValidQueries_True()
+    public function testGetTransactionsAction_ValidQueries_ReturnTransactions()
     {
         $client = static::createClient();
 
@@ -239,6 +260,7 @@ class TransactionControllerTest extends WebTestCase
                 "sum" => 705)
         );
 
+        // Return transactions
         $crawler = $client->request('GET', '/transactions/?user=2000&day=1492453903&threshold=150');
 
         $result = json_decode($crawler->text(),true);
@@ -276,6 +298,48 @@ class TransactionControllerTest extends WebTestCase
         $this->assertEquals($transaction->getReceiverId(), $transactionResult->getReceiverId());
         $this->assertEquals($transaction->getSum(), $transactionResult->getSum());
         $this->assertEquals($transaction->getTs(), $transactionResult->getTs());
+    }
+
+    public function testGetTransactionsAction_ValidQueries_NotReturnTransactions()
+    {
+        $client = static::createClient();
+
+        // Add transactions
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2000,
+                "receiver" => 2060,
+                "timestamp" => 1492453891,
+                "sum" => 450)
+        );
+
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2060,
+                "receiver" => 2000,
+                "timestamp" => 1492453903,
+                "sum" => 150)
+        );
+
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2051,
+                "receiver" => 2000,
+                "timestamp" => 1492538745,
+                "sum" => 705)
+        );
+
+        $crawler = $client->request('GET', '/transactions/?user=2001&day=1492453903&threshold=150');
+
+        $result = json_decode($crawler->text(),true);
+        $this->assertEquals(0,sizeof($result));
+
+        $crawler = $client->request('GET', '/transactions/?user=2000&day=1492453903&threshold=15000');
+
+        $result = json_decode($crawler->text(),true);
+        $this->assertEquals(0,sizeof($result));
+
+        $crawler = $client->request('GET', '/transactions/?user=2051&day=1392453903&threshold=150');
+
+        $result = json_decode($crawler->text(),true);
+        $this->assertEquals(0,sizeof($result));
     }
 
     //
@@ -363,7 +427,7 @@ class TransactionControllerTest extends WebTestCase
         $this->assertContains("Parameters user, since, until are not integers.", $crawler->text());
     }
 
-    public function testGetBalanceAction_ValidQueries_True()
+    public function testGetBalanceAction_ValidQueries_ReturnBalanceNonZero()
     {
         $client = static::createClient();
 
@@ -389,6 +453,7 @@ class TransactionControllerTest extends WebTestCase
                 "sum" => 75)
         );
 
+        // Return balance
         $crawler = $client->request('GET', '/balance/?user=2019&since=1492453891&until=1492538745');
 
         $result = intval(json_decode($crawler->text()));
@@ -403,5 +468,45 @@ class TransactionControllerTest extends WebTestCase
 
         $result = json_decode($crawler->text());
         $this->assertEquals(75, $result);
+    }
+
+    public function testGetBalanceAction_ValidQueries_ReturnBalanceZero()
+    {
+        $client = static::createClient();
+
+        // Add transactions
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 3000,
+                "receiver" => 3001,
+                "timestamp" => 1492453891,
+                "sum" => 1000)
+        );
+
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 3001,
+                "receiver" => 3000,
+                "timestamp" => 1492453903,
+                "sum" => 1000)
+        );
+
+        $crawler = $client->request('GET', '/balance/?user=2019&since=1492538745&until=1492453891');
+
+        $result = intval(json_decode($crawler->text()));
+        $this->assertEquals(0, $result);
+
+        $crawler = $client->request('GET', '/balance/?user=2021&since=1492453891&until=1492538745');
+
+        $result = intval(json_decode($crawler->text()));
+        $this->assertEquals(0, $result);
+
+        $crawler = $client->request('GET', '/balance/?user=3000&since=1492453891&until=1492453903');
+
+        $result = intval(json_decode($crawler->text()));
+        $this->assertEquals(0, $result);
+
+        $crawler = $client->request('GET', '/balance/?user=3001&since=1492453891&until=1492453903');
+
+        $result = intval(json_decode($crawler->text()));
+        $this->assertEquals(0, $result);
     }
 }

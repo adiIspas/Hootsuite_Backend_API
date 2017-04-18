@@ -27,8 +27,8 @@
       <file leaf-file-name="TransactionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBBundle/Controller/TransactionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2839">
-              <caret line="167" column="5" lean-forward="true" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
+            <state relative-caret-position="2856">
+              <caret line="168" column="1" lean-forward="true" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
               <folding>
                 <element signature="e#39#73#0#PHP" expanded="true" />
               </folding>
@@ -39,8 +39,8 @@
       <file leaf-file-name="TransactionRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBBundle/Repository/TransactionRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="2567">
+              <caret line="151" column="1" lean-forward="true" selection-start-line="151" selection-start-column="1" selection-end-line="151" selection-end-column="1" />
               <folding>
                 <element signature="e#129#173#0#PHP" expanded="true" />
               </folding>
@@ -51,8 +51,8 @@
       <file leaf-file-name="TransactionControllerTest.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/DBBundle/Controller/TransactionControllerTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6705">
-              <caret line="406" column="1" lean-forward="true" selection-start-line="406" selection-start-column="1" selection-end-line="406" selection-end-column="1" />
+            <state relative-caret-position="8687">
+              <caret line="511" column="1" lean-forward="true" selection-start-line="511" selection-start-column="1" selection-end-line="511" selection-end-column="1" />
               <folding>
                 <element signature="e#45#79#0#PHP" expanded="true" />
               </folding>
@@ -523,44 +523,44 @@
       <workItem from="1492330595004" duration="21556000" />
       <workItem from="1492426300950" duration="13512000" />
       <workItem from="1492515385216" duration="3999000" />
-      <workItem from="1492531139526" duration="1389000" />
+      <workItem from="1492531139526" duration="2561000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 52m 23s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 53m 09s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 54m 17s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 54m 39s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 55m 24s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 56m 14s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 58m 13s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.18 at 17h 06m 34s.xml">
-      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="TransactionControllerTest - 2017.04.18 at 17h 07m 21s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
     <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 20m 53s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 27m 03s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 29m 27s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 30m 17s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 33m 24s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 34m 13s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 37m 47s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 40m 07s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 19h 40m 45s.xml">
+      <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104235000" />
+    <option name="totallyTimeSpent" value="105407000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -581,7 +581,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36363637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36363637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -875,14 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBBundle/Document/Transaction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="111" column="26" lean-forward="true" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phpunit.xml.dist">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -920,14 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBBundle/Service/TransactionService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-151">
-          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/phpunit-bridge/DeprecationErrorHandler.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -935,30 +919,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBBundle/Repository/TransactionRepository.php">
+    <entry file="file://$PROJECT_DIR$/src/DBBundle/Service/TransactionService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="e#129#173#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="-336">
+          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBBundle/Document/Transaction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="111" column="26" lean-forward="true" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBBundle/Controller/TransactionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2839">
-          <caret line="167" column="5" lean-forward="true" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
+        <state relative-caret-position="2856">
+          <caret line="168" column="1" lean-forward="true" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
           <folding>
             <element signature="e#39#73#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBBundle/Repository/TransactionRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2567">
+          <caret line="151" column="1" lean-forward="true" selection-start-line="151" selection-start-column="1" selection-end-line="151" selection-end-column="1" />
+          <folding>
+            <element signature="e#129#173#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/DBBundle/Controller/TransactionControllerTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6705">
-          <caret line="406" column="1" lean-forward="true" selection-start-line="406" selection-start-column="1" selection-end-line="406" selection-end-column="1" />
+        <state relative-caret-position="8687">
+          <caret line="511" column="1" lean-forward="true" selection-start-line="511" selection-start-column="1" selection-end-line="511" selection-end-column="1" />
           <folding>
             <element signature="e#45#79#0#PHP" expanded="true" />
           </folding>
