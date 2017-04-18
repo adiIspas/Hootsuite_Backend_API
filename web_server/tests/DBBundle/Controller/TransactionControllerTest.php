@@ -2,6 +2,8 @@
 
 namespace DBBundle\Tests\Controller;
 
+use DBBundle\Document\Transaction;
+use function MongoDB\BSON\toJSON;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TransactionControllerTest extends WebTestCase
@@ -211,6 +213,71 @@ class TransactionControllerTest extends WebTestCase
         $this->assertContains("Parameters user, day, threshold are not integers.", $crawler->text());
     }
 
+    public function testGetTransactionsAction_ValidQueries_True()
+    {
+        $client = static::createClient();
+
+        // Add transactions
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2000,
+                "receiver" => 2060,
+                "timestamp" => 1492453891,
+                "sum" => 450)
+        );
+
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2060,
+                "receiver" => 2000,
+                "timestamp" => 1492453903,
+                "sum" => 150)
+        );
+
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2051,
+                "receiver" => 2000,
+                "timestamp" => 1492538745,
+                "sum" => 705)
+        );
+
+        $crawler = $client->request('GET', '/transactions/?user=2000&day=1492453903&threshold=150');
+
+        $result = json_decode($crawler->text(),true);
+
+        $transaction = new Transaction();
+        $transaction->setSenderId(2000);
+        $transaction->setReceiverId(2060);
+        $transaction->setSum(450);
+        $transaction->setTs(1492453891);
+
+        $transactionResult = new Transaction();
+        $transactionResult->setSenderId($result[0]["sender_id"]);
+        $transactionResult->setReceiverId($result[0]["receiver_id"]);
+        $transactionResult->setSum($result[0]["sum"]);
+        $transactionResult->setTs($result[0]["ts"]);
+
+        $this->assertEquals($transaction->getSenderId(), $transactionResult->getSenderId());
+        $this->assertEquals($transaction->getReceiverId(), $transactionResult->getReceiverId());
+        $this->assertEquals($transaction->getSum(), $transactionResult->getSum());
+        $this->assertEquals($transaction->getTs(), $transactionResult->getTs());
+
+        $transaction = new Transaction();
+        $transaction->setSenderId(2060);
+        $transaction->setReceiverId(2000);
+        $transaction->setSum(150);
+        $transaction->setTs(1492453903);
+
+        $transactionResult = new Transaction();
+        $transactionResult->setSenderId($result[1]["sender_id"]);
+        $transactionResult->setReceiverId($result[1]["receiver_id"]);
+        $transactionResult->setSum($result[1]["sum"]);
+        $transactionResult->setTs($result[1]["ts"]);
+
+        $this->assertEquals($transaction->getSenderId(), $transactionResult->getSenderId());
+        $this->assertEquals($transaction->getReceiverId(), $transactionResult->getReceiverId());
+        $this->assertEquals($transaction->getSum(), $transactionResult->getSum());
+        $this->assertEquals($transaction->getTs(), $transactionResult->getTs());
+    }
+
     //
     // Tests for method getBalanceAction
     //
@@ -294,5 +361,47 @@ class TransactionControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/balance/?user=a&since=b&until=c');
 
         $this->assertContains("Parameters user, since, until are not integers.", $crawler->text());
+    }
+
+    public function testGetBalanceAction_ValidQueries_True()
+    {
+        $client = static::createClient();
+
+        // Add transactions
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 1995,
+                "receiver" => 2017,
+                "timestamp" => 1492453891,
+                "sum" => 450)
+        );
+
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2017,
+                "receiver" => 2050,
+                "timestamp" => 1492453903,
+                "sum" => 150)
+        );
+
+        $crawler = $client->request('POST', '/transactions',
+            array("sender" => 2050,
+                "receiver" => 2019,
+                "timestamp" => 1492538745,
+                "sum" => 75)
+        );
+
+        $crawler = $client->request('GET', '/balance/?user=2019&since=1492453891&until=1492538745');
+
+        $result = intval(json_decode($crawler->text()));
+        $this->assertEquals(75, $result);
+
+        $crawler = $client->request('GET', '/balance/?user=2017&since=1492453903&until=1492453903');
+
+        $result = json_decode($crawler->text());
+        $this->assertEquals(300, $result);
+
+        $crawler = $client->request('GET', '/balance/?user=2050&since=1492453903&until=1492538745');
+
+        $result = json_decode($crawler->text());
+        $this->assertEquals(75, $result);
     }
 }

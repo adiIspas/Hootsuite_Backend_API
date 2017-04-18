@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TransactionController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TransactionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBBundle/Controller/TransactionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2856">
-              <caret line="168" column="1" lean-forward="true" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
+            <state relative-caret-position="399">
+              <caret line="145" column="9" lean-forward="false" selection-start-line="145" selection-start-column="9" selection-end-line="145" selection-end-column="9" />
               <folding>
                 <element signature="e#39#73#0#PHP" expanded="true" />
               </folding>
@@ -36,12 +36,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransactionControllerTest.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TransactionRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBBundle/Repository/TransactionRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1020">
+              <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransactionControllerTest.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/DBBundle/Controller/TransactionControllerTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5049">
-              <caret line="297" column="1" lean-forward="true" selection-start-line="297" selection-start-column="1" selection-end-line="297" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="242">
+              <caret line="256" column="0" lean-forward="true" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+              <folding>
+                <element signature="e#45#79#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,8 +81,8 @@
         <option value="$PROJECT_DIR$/src/DBBundle/Service/TransactionService.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/DBBundle/Repository/TransactionRepository.php" />
         <option value="$PROJECT_DIR$/src/DBBundle/Controller/TransactionController.php" />
+        <option value="$PROJECT_DIR$/src/DBBundle/Repository/TransactionRepository.php" />
         <option value="$PROJECT_DIR$/tests/DBBundle/Controller/TransactionControllerTest.php" />
       </list>
     </option>
@@ -108,7 +120,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -316,6 +327,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -507,44 +519,45 @@
       <workItem from="1492088105537" duration="1421000" />
       <workItem from="1492090269019" duration="4828000" />
       <workItem from="1492330595004" duration="21556000" />
-      <workItem from="1492426300950" duration="5989000" />
+      <workItem from="1492426300950" duration="13512000" />
+      <workItem from="1492515385216" duration="3921000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TransactionControllerTest - 2017.04.16 at 20h 59m 38s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 52m 05s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.16 at 21h 01m 39s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 52m 23s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.16 at 21h 02m 08s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 53m 09s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.17 at 15h 40m 48s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 54m 17s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.17 at 15h 43m 22s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 54m 39s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.17 at 15h 59m 02s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 55m 24s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.17 at 16h 06m 12s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 56m 14s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.17 at 16h 06m 27s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 16h 58m 13s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.17 at 16h 06m 36s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 17h 06m 34s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TransactionControllerTest - 2017.04.17 at 16h 09m 45s.xml">
+    <history-entry file="TransactionControllerTest - 2017.04.18 at 17h 07m 21s.xml">
       <configuration name="TransactionControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91324000" />
+    <option name="totallyTimeSpent" value="102768000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -556,7 +569,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -564,12 +577,12 @@
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28068304" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36363637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36363637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -621,9 +634,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="33" column="73" lean-forward="false" selection-start-line="33" selection-start-column="73" selection-end-line="33" selection-end-column="73" />
-          <folding>
-            <element signature="e#129#173#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -649,9 +660,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="35" column="1" lean-forward="false" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-          <folding>
-            <element signature="e#129#173#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -677,9 +686,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding>
-            <element signature="e#129#173#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -720,9 +727,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="e#129#173#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -740,9 +745,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-          <folding>
-            <element signature="e#129#173#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -919,30 +922,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBBundle/Controller/TransactionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="145" column="9" lean-forward="false" selection-start-line="145" selection-start-column="9" selection-end-line="145" selection-end-column="9" />
+          <folding>
+            <element signature="e#39#73#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBBundle/Repository/TransactionRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1347">
-          <caret line="80" column="5" lean-forward="true" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
-          <folding>
-            <element signature="e#129#173#0#PHP" expanded="false" />
-          </folding>
+        <state relative-caret-position="1020">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/DBBundle/Controller/TransactionControllerTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5049">
-          <caret line="297" column="1" lean-forward="true" selection-start-line="297" selection-start-column="1" selection-end-line="297" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBBundle/Controller/TransactionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2856">
-          <caret line="168" column="1" lean-forward="true" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
+        <state relative-caret-position="242">
+          <caret line="256" column="0" lean-forward="true" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
           <folding>
-            <element signature="e#39#73#0#PHP" expanded="true" />
+            <element signature="e#45#79#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -58,6 +58,7 @@ class TransactionRepository extends DocumentRepository
         // Create query
         $qb = $this->createQueryBuilder()
                    ->hydrate(false)
+                   ->eagerCursor(true)
                    ->select('sender_id', 'receiver_id', 'ts', 'sum');
 
         // Select user
@@ -75,9 +76,11 @@ class TransactionRepository extends DocumentRepository
 
         // Execute query
         $query = $qb->getQuery();
-        $transactions = $query->execute()->toArray();
+        $transactions = $query->execute()
+                              ->toArray();
 
-        return new Response(json_encode($transactions),200);
+//        return new Response(json_encode($transactions),200);
+        return json_encode($transactions);
     }
 
     /**
@@ -143,6 +146,7 @@ class TransactionRepository extends DocumentRepository
             $balance += $currentValue["sum"];
         }
 
-        return new Response($balance,200);
+//        return new Response($balance,200);
+        return json_encode($balance);
     }
 }
