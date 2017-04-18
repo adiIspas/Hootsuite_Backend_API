@@ -24,13 +24,13 @@ class TransactionRepository extends DocumentRepository
     public function addTransaction(Transaction $transaction)
     {
         $this->createQueryBuilder()
-            ->insert()
-            ->field('sender_id')->set(intval($transaction->getSenderId()))
-            ->field('receiver_id')->set(intval($transaction->getReceiverId()))
-            ->field('ts')->set(intval($transaction->getTs()))
-            ->field('sum')->set(intval($transaction->getSum()))
-            ->getQuery()
-            ->execute();
+             ->insert()
+             ->field('sender_id')->set(intval($transaction->getSenderId()))
+             ->field('receiver_id')->set(intval($transaction->getReceiverId()))
+             ->field('ts')->set(intval($transaction->getTs()))
+             ->field('sum')->set(intval($transaction->getSum()))
+             ->getQuery()
+             ->execute();
 
         return new Response('The transaction was successfully added!',200);
     }
@@ -41,7 +41,7 @@ class TransactionRepository extends DocumentRepository
      * @param integer $user
      * @param integer $day
      * @param integer $threshold
-     * @return Response
+     * @return string
      */
     public function getTransactions($user, $day, $threshold)
     {
@@ -62,24 +62,20 @@ class TransactionRepository extends DocumentRepository
                    ->select('sender_id', 'receiver_id', 'ts', 'sum');
 
         // Select user
-        $qb
-            ->addOr($qb->expr()->field('sender_id')->equals($user))
-            ->addOr($qb->expr()->field('receiver_id')->equals($user));
+        $qb->addOr($qb->expr()->field('sender_id')->equals($user))
+           ->addOr($qb->expr()->field('receiver_id')->equals($user));
 
         // Select day
-        $qb
-            ->addAnd($qb->expr()->field('ts')->range($tsBeginDay,$tsEndDay));
+        $qb->addAnd($qb->expr()->field('ts')->range($tsBeginDay,$tsEndDay));
 
         // Select threshold
-        $qb
-            ->addAnd($qb->expr()->field('sum')->gte($threshold));
+        $qb->addAnd($qb->expr()->field('sum')->gte($threshold));
 
         // Execute query
         $query = $qb->getQuery();
         $transactions = $query->execute()
                               ->toArray();
 
-//        return new Response(json_encode($transactions),200);
         return json_encode($transactions);
     }
 
@@ -89,7 +85,7 @@ class TransactionRepository extends DocumentRepository
      * @param integer $user
      * @param integer $since
      * @param integer $until
-     * @return Response
+     * @return string
      */
     public function getBalance($user, $since, $until)
     {
@@ -105,17 +101,16 @@ class TransactionRepository extends DocumentRepository
         $tsUntilDay = strtotime($untilDay) + 86399;
 
         // Create query for sender user
+
         $qb = $this->createQueryBuilder()
             ->hydrate(false)
             ->select('sum');
 
         // Select sender user
-        $qb
-            ->field('sender_id')->equals($user);
+        $qb->field('sender_id')->equals($user);
 
         // Select day
-        $qb
-            ->addAnd($qb->expr()->field('ts')->range($tsSinceDay, $tsUntilDay));
+        $qb->addAnd($qb->expr()->field('ts')->range($tsSinceDay, $tsUntilDay));
 
         // Execute query
         $query = $qb->getQuery();
@@ -131,12 +126,10 @@ class TransactionRepository extends DocumentRepository
             ->select('sum');
 
         // Select receiver user
-        $qb
-            ->field('receiver_id')->equals($user);
+        $qb->field('receiver_id')->equals($user);
 
         // Select day
-        $qb
-            ->addAnd($qb->expr()->field('ts')->range($tsSinceDay, $tsUntilDay));
+        $qb->addAnd($qb->expr()->field('ts')->range($tsSinceDay, $tsUntilDay));
 
         // Execute query
         $query = $qb->getQuery();
@@ -146,7 +139,6 @@ class TransactionRepository extends DocumentRepository
             $balance += $currentValue["sum"];
         }
 
-//        return new Response($balance,200);
         return json_encode($balance);
     }
 }

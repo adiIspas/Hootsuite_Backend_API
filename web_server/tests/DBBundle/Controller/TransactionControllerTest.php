@@ -3,7 +3,6 @@
 namespace DBBundle\Tests\Controller;
 
 use DBBundle\Document\Transaction;
-use function MongoDB\BSON\toJSON;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TransactionControllerTest extends WebTestCase

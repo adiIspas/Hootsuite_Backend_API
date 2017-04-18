@@ -4,13 +4,10 @@ namespace DBBundle\Controller;
 
 use DBBundle\Document\Transaction;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Controller\Annotations as FOS;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class TransactionController extends Controller
 {
@@ -78,7 +75,7 @@ class TransactionController extends Controller
      * @FOS\Get("/balance/")
      *
      * Request $request
-     * @return mixed
+     * @return Response
      */
     public function getBalanceAction(Request $request)
     {
@@ -152,7 +149,7 @@ class TransactionController extends Controller
         $missedParams = null;
         $paramsValues = array_values($requestParams);
         foreach ($paramsValues as $currentParamValue){
-            if (! filter_var($currentParamValue, FILTER_VALIDATE_INT)) {
+            if (!filter_var($currentParamValue, FILTER_VALIDATE_INT)) {
                 $missedParams[] = array_search($currentParamValue,$requestParams);
             }
         }

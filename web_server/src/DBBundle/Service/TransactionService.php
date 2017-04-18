@@ -7,11 +7,8 @@ namespace DBBundle\Service;
  * Time: 20:20
  */
 
-use Doctrine\ODM\MongoDB;
 use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
-use DBBundle\Repository\TransactionRepository;
 use DBBundle\Document\Transaction;
-use Doctrine\ORM\EntityManager;
 use Documents\CustomRepository\Repository;
 use Symfony\Component\HttpFoundation\Response;
 
