@@ -1,5 +1,5 @@
 # Hootsuite_Backend_API
-API for adding and analysing transactions creating in PHP with Symfony.
+API for adding and analysing transactions creating in PHP with [Symfony](http://symfony.com/). For storage transactions I used [MongoDB](https://www.mongodb.com/).
 
 ## Running
 
