@@ -1,28 +1,47 @@
 # Hootsuite_Backend_API
-API for adding and analysing transactions
-
-
-#Dockerized Symfony Project
-
-A symfony project utilizing Docker based on PHP-FPM and nginx.
+API for adding and analysing transactions creating in PHP with Symfony.
 
 ## Running
 
 You can run the Docker environment using [docker-compose](https://docs.docker.com/compose/):
 
-    $ docker-compose up -d
+    $ docker-compose up
 
-You can run one-shot command inside the `symfony` service container:
+Or start from `run.sh` file.
 
-    $ docker-compose run symfony composer install
-    $ docker-compose run symfony php app/console cache:clear
+If you want to run on local PHP you can go in `code` folder and using:
 
-## Example Application
+    $ php bin\console server:run
 
-The example app implements a simple weather application using Redis.
+## Describe Application
 
-During the startup of the `fpm` service some fixture data will be generated for
-you automatically. If you want to add your own entries you can use the console
-command shipped with the example application:
+This application implements a simple REST API for adding and analysing transactions.
 
-    $ docker-compose run symfony php app/console giantswarm:temperature:add cologne 30
+The app offer 3 methods for that.
+
+### Adding transaction (POST Method)
+
+JSON payload of the form: {“sender”: sender_id(integer), “receiver”: receiver_id(integer), “timestamp”: ts(integer), “sum”: x(integer)}
+
+Call from `http://yourhost:yourport/transactions/`
+
+### Getting transactions (GET Method)
+
+Call from `http://yourhost:yourport/transactions/?user=user_param&day=day_param&threshold=threshold_param`
+
+Where:
+1. `user_param` are integer user id;
+2. `day_param` are integer timestamp;
+3. `threshold` are integer thresold for value of transactions.
+
+### Getting balance (GET Method)
+
+Call from `http://yourhost:yourport/transactions/?user=user_param&since=since_param&until=until_param`
+
+Where:
+1. `user_param` are integer user id;
+2. `since_param` are integer timestamp for start day;
+3. `until_param` are integer timestamp for end day.
+
+
+
