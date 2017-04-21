@@ -1,0 +1,17 @@
+web_server:
+    build: web_server/
+    ports:
+        - "8000:8000"
+    links:
+        - mongo
+    tty: true
+    environment:
+        SYMFONY__MONGO_ADDRESS: mongo
+        SYMFONY__MONGO_PORT: 27017
+
+mongo:
+    image: mongo:3.0
+    container_name: mongo
+    command: mongod --smallfiles
+    expose:
+        - 27017
