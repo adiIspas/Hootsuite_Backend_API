@@ -10,4 +10,5 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-    mongodb_server: 'mongodb://localhost:27017'
+    mongodb_server: mongodb://mongo:27017
+    mongo_database_name: hootsuite_database

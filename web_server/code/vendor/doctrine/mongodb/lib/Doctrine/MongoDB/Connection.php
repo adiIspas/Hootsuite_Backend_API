@@ -272,7 +272,8 @@ class Connection
             $this->eventManager->dispatchEvent(Events::preConnect, new EventArgs($this));
         }
 
-        $server = $this->server ?: 'mongodb://localhost:27017';
+//        $server = $this->server ?: 'mongodb://localhost:27017';
+        $server = 'mongodb://mongo:27017';
         $options = $this->options;
 
         $options = isset($options['timeout']) ? $this->convertConnectTimeout($options) : $options;
