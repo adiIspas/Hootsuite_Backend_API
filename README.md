@@ -9,6 +9,8 @@ You can run the Docker environment using [docker-compose] (https://docs.docker.c
 
 Or start from `run.sh` file.
 
+`! Attention:` Your drive for run the code is need to be shared in Docker and move code in a single directory with name of repository.
+
 ## Describe Application
 
 This application implements a simple REST API for adding and analysing transactions.
