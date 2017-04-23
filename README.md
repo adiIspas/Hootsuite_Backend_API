@@ -3,15 +3,11 @@ API for adding and analysing transactions creating in PHP with [Symfony](http://
 
 ## Running
 
-You can run the Docker environment using [docker-compose](https://docs.docker.com/compose/):
+You can run the Docker environment using [docker-compose] (https://docs.docker.com/compose/) in `code` directory:
 
     $ docker-compose up
 
 Or start from `run.sh` file.
-
-If you want to run on local PHP you can go in `code` folder and using:
-
-    $ php bin\console server:run
 
 ## Describe Application
 
