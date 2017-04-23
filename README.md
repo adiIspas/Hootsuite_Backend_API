@@ -19,11 +19,11 @@ The app offer 3 methods for that.
 
 JSON payload of the form: {“sender”: sender_id(integer), “receiver”: receiver_id(integer), “timestamp”: ts(integer), “sum”: x(integer)}
 
-Call from `http://yourhost:yourport/transactions/`
+Call from `http://localhost:8000/transactions/`
 
 ### Getting transactions (GET Method)
 
-Call from `http://yourhost:yourport/transactions/?user=user_param&day=day_param&threshold=threshold_param`
+Call from `http://localhost:8000/transactions/?user=user_param&day=day_param&threshold=threshold_param`
 
 Where:
 1. `user_param` are integer user id;
@@ -32,7 +32,7 @@ Where:
 
 ### Getting balance (GET Method)
 
-Call from `http://yourhost:yourport/transactions/?user=user_param&since=since_param&until=until_param`
+Call from `http://localhost:8000/transactions/?user=user_param&since=since_param&until=until_param`
 
 Where:
 1. `user_param` are integer user id;
